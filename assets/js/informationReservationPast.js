@@ -25,21 +25,25 @@ fetch('http://172.16.195.254:5000/reservation/past', {
     );
 
 function historique(dataUser) {
-    let date = dataUser.DateSession;
+    let date = dataUser.DateReservation;
+    let heure = dataUser.HeureReservation;
     let marque = dataUser.Marque;
     let modele = dataUser.Modele;
 
     let ligne = document.createElement('tr');
 
     let colDate = document.createElement('td');
+    let colHeure = document.createElement('td');
     let colMarque = document.createElement('td');
     let colModele = document.createElement('td');
 
-    colDate.textContent = date;
+    colDate.textContent = new Date(date).toLocaleDateString('fr-FR');
+    colHeure.textContent = heure.substing(0, 5);
     colMarque.textContent = marque;
     colModele.textContent = modele;
 
     ligne.appendChild(colDate);
+    ligne.appendChild(colHeure);
     ligne.appendChild(colMarque);
     ligne.appendChild(colModele);
 
