@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/styleInscription.css">
+    <title>Inscription</title>
+</head>
+
+<body>
+    <!-- Bandeau De Navigation -->
+    <nav>
+        <img id="bandeau" src="../img/Bandeaux.png" alt="Bandeaux">
+        <h1 id="titre">SpeedCircuit</h1>
+        <div id="accueil">
+            <a href="../../index.html">
+                <p>Accueil</p>
+            </a>
+        </div>
+        <div id="information">
+            <a href="informationsCircuit.html">
+                <p>Informations</p>
+            </a>
+        </div>
+        <div id="reserver">
+            <a href="reservation.html">
+                <p>Reserver</p>
+            </a>
+        </div>
+        <div id="evenement">
+            <a href="evenement.html">
+                <p>Evenements</p>
+            </a>
+        </div>
+
+        <div id="compte" class="active_rouge">
+            <a href="#">
+                <img src="../img/logo_compte.png" alt="Compte">
+            </a>
+        </div>
+    </nav>
+
+    <div class="contenu">
+        <h1>Créer un compte</h1>
+        <form id="formInscription" action="../php/inscription.php" method="post">
+            <label for="identifiant">Identifiant :</label>
+            <input type="text" id="identifiant" name="identifiant" placeholder="Votre identifiant" required>
+
+            <label for="nom">Nom :</label>
+            <input type="text" id="nom" name="nom" placeholder="Votre nom" required>
+
+            <label for="prenom">Prénom :</label>
+            <input type="text" id="prenom" name="prenom" placeholder="Votre prénom" required>
+
+            <label for="age">Âge :</label>
+            <input type="number" id="age" name="age" placeholder="Votre âge" required min="18">
+
+            <label for="mail">Adresse mail :</label>
+            <input type="email" id="mail" name="mail" placeholder="votre@email.com" required>
+
+            <label for="mdp">Mot de passe :</label>
+            <input type="password" id="mdp" name="mdp" placeholder="••••••••" required minlength="8">
+
+            <label for="confirm_mdp">Confirmation du mot de passe :</label>
+            <input type="password" id="confirm_mdp" name="confirm_mdp" placeholder="••••••••" required>
+            <button type="submit">S'inscrire</button>
+            Vous avez un compte, <a id="redirect_auth" href="authentification.html">Connecez-vous</a>.
+        </form>
+    </div>
+</body>
+
+</html>

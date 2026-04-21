@@ -1,0 +1,163 @@
+/**
+    Fichier uniquement pour la page d'authentification (connexion)
+*/
+
+#titre {
+  color: white;
+  font-size: 26px;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  margin-right: 50px;
+}
+
+/* Conteneur d'authentification */
+.Authentification {
+  position: relative;
+  z-index: 1;
+  max-width: 480px;
+  margin: 140px auto 40px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(15px);
+  border-radius: 24px;
+  padding: 50px 45px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.6s ease;
+}
+
+.Authentification h1 {
+  text-align: center;
+  color: #2a5298;
+  font-size: 30px;
+  margin-bottom: 40px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Formulaire */
+.Authentification form {
+  width: 100%;
+}
+
+.Authentification label {
+  display: block;
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 10px;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+}
+
+.Authentification input[type="text"],
+.Authentification input[type="password"] {
+  width: 100%;
+  padding: 16px 20px;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  background: #f8f9fa;
+  margin-bottom: 25px;
+  font-family: inherit;
+}
+
+.Authentification input[type="text"]:focus,
+.Authentification input[type="password"]:focus {
+  outline: none;
+  border-color: #667eea;
+  background: white;
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Bouton de soumission */
+.Authentification input[type="submit"] {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+  margin-bottom: 25px;
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  letter-spacing: 0.5px;
+}
+
+.Authentification input[type="submit"]:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+}
+
+.Authentification input[type="submit"]:active {
+  transform: translateY(-1px);
+}
+
+/* Lien d'inscription */
+.Authentification form {
+  text-align: center;
+  color: #666;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+#redirect_inscription {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+#redirect_inscription:hover {
+  color: #764ba2;
+}
+
+#redirect_inscription::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  transition: width 0.3s ease;
+}
+
+#redirect_inscription:hover::after {
+  width: 100%;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  
+  .Authentification {
+    margin: 100px 20px 30px;
+    padding: 40px 30px;
+  }
+  
+  .Authentification h1 {
+    font-size: 26px;
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .Authentification {
+    padding: 35px 25px;
+  }
+  
+  .Authentification input[type="text"],
+  .Authentification input[type="password"] {
+    padding: 14px 16px;
+    font-size: 14px;
+  }
+  
+  .Authentification input[type="submit"] {
+    padding: 14px;
+    font-size: 16px;
+  }
+}

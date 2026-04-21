@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation</title>
+    <link rel="stylesheet" href="../css/reservation.css">
+    <link rel="stylesheet" href="../css/base.css">
+</head>
+
+<body>
+    <!-- Bandeau De Navigation -->
+    <nav>
+        <img id="bandeau" src="../img/Bandeaux.png" alt="Bandeaux">
+        <h1 id="titre">SpeedCircuit</h1>
+        <div id="accueil">
+            <a href="../../index.html">
+                <p>Accueil</p>
+            </a>
+        </div>
+        <div id="information">
+            <a href="informationsCircuit.html">
+                <p>Informations</p>
+            </a>
+        </div>
+        <div id="reserver" class="active_rouge">
+            <a href="reservation.html">
+                <p>Reserver</p>
+            </a>
+        </div>
+        <div id="evenement">
+            <a href="evenement.html">
+                <p>Evenements</p>
+            </a>
+        </div>
+
+        <div id="compte">
+            <a href="authentification.html">
+                <img src="../img/logo_compte.png" alt="Compte">
+            </a>
+        </div>
+    </nav>
+
+    <main class="mainContent">
+        <div class="carDisplayPanel">
+            <div class="panelHeader">
+                <span>Flotte disponible</span>
+                <span id="compteurVehicules"
+                    style="font-size: 0.8rem; font-weight: 400; color: #666;">Chargement...</span>
+            </div>
+
+            <div class="carListScrollContainer">
+                <div class="carGrid" id="grilleVehicules"></div>
+            </div>
+        </div>
+
+        <div class="reservationPanel">
+            <h2 class="formTitle">Réservation</h2>
+            <form action="../php/traitement_reservation.php" method="POST" class="inputGroup">
+                <input type="date" name="date" class="inputField" required>
+                <input type="time" name="heure" class="inputField" required>
+
+                <div class="radioGroup">
+                    <label class="radioOption">
+                        <input type="radio" name="locationOption" value="sans" checked>
+                        Sans location
+                    </label>
+                    <label class="radioOption">
+                        <input type="radio" name="locationOption" value="avec">
+                        Avec location
+                    </label>
+                </div>
+
+                <div id="selectedCar">
+                    <input type="text" id="marque" name="marque" class="inputField" placeholder="Marque du véhicule"
+                        required readonly>
+                    <input type="text" name="modele" id="modele" class="inputField" placeholder="modele du véhicule"
+                        required readonly>
+                </div>
+                <input type="text" name="prix" id="priceCar" class="inputField" placeholder="Prix de la location"
+                    value="120 €" readonly>
+
+                <button type="submit" class="submitButton">Réserver</button>
+            </form>
+        </div>
+
+    </main>
+    <script src="../js/reservation.js"></script>
+</body>
+
+</html>

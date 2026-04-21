@@ -1,0 +1,122 @@
+/* Style de la division contenu */
+.contenu {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    max-width: 450px;
+    margin: 50px auto;
+}
+
+.contenu h1 {
+    color: #1a1a5e;
+    font-size: 28px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Style des labels */
+.contenu label {
+    display: block;
+    color: #333;
+    font-weight: 500;
+    margin-bottom: 8px;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+/* Style des inputs */
+.contenu input[type="text"],
+.contenu input[type="email"],
+.contenu input[type="password"],
+.contenu input[type="number"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.contenu input:focus {
+    outline: none;
+    border-color: #ff2e2e;
+    box-shadow: 0 0 0 3px rgba(255, 46, 46, 0.1);
+}
+
+/* Style du bouton */
+.contenu button[type="submit"] {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #ff2e2e 0%, #cc0000 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 25px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.contenu button[type="submit"]:hover,
+.contenu input[type="submit"]:hover {
+    background: linear-gradient(135deg, #cc0000 0%, #990000 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(255, 46, 46, 0.4);
+}
+
+.contenu button[type="submit"]:active,
+.contenu input[type="submit"]:active {
+    transform: translateY(0);
+}
+
+/* Animation pour les champs invalides */
+.contenu input:invalid:not(:placeholder-shown) {
+    border-color: #ff2e2e;
+}
+
+.contenu input:valid:not(:placeholder-shown) {
+    border-color: #4CAF50;
+}
+
+/* Style pour le titre du formulaire */
+.contenu h2,
+.contenu h3 {
+    color: #1a1a5e;
+    margin-bottom: 20px;
+}
+
+
+#redirect_auth {
+    text-align: center;
+    color: #ff2e2e;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+#redirect_auth:hover {
+    color: #ff2e2e;
+}
+
+#redirect_auth::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background: linear-gradient(135deg, #667eea 0%, #ff2e2e 100%);
+    transition: width 0.3s ease;
+}
+
+#redirect_inscription:hover::after {
+  width: 100%;
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Information compte</title>
+    <link rel="stylesheet" href="../css/base.css">
+
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+    <link rel="stylesheet" href="../css/styleInformationsCircuit.css">
+
+
+
+
+</head>
+
+<body>
+    <!-- Bandeau De Navigation -->
+    <nav>
+        <img id="bandeau" src="../img/Bandeaux.png" alt="Bandeaux">
+        <h1 id="titre">SpeedCircuit</h1>
+        <div id="accueil">
+            <a href="../../index.html">
+                <p>Accueil</p>
+            </a>
+        </div>
+        <div id="information" class="active_rouge">
+            <a href="#">
+                <p>Informations</p>
+            </a>
+        </div>
+        <div id="reserver">
+            <a href="reservation.html">
+                <p>Reserver</p>
+            </a>
+        </div>
+        <div id="evenement">
+            <a href="evenement.html">
+                <p>Evenements</p>
+            </a>
+        </div>
+
+        <div id="compte">
+            <a href="authentification.html">
+                <img src="../img/logo_compte.png" alt="Compte">
+            </a>
+        </div>
+    </nav>
+
+
+
+    <div id="contenu">
+        <h1>Informations du circuit</h1>
+
+        <br>
+
+        <h2>L'histoire du circuit</h2>
+        <p>
+            Son histoire débute en 1969,
+            lorsque l'industriel français Paul Ricard décide de construire
+            un circuit automobile dans le sud de la France. Situé près de la
+            ville du Castellet, le circuit est conçu pour accueillir des courses de Formule 1
+            et d'autres compétitions automobiles majeures. Le tracé original, long de 5,8 kilomètres,
+            est réputé pour ses longues lignes droites et ses virages rapides, offrant des défis techniques aux pilotes.
+        </p>
+
+        <h3>Sa localisation</h3>
+
+    </div>
+
+    <div id="map"></div>
+
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="">
+        </script>
+    <script src="../js/carteLocalisation.js"></script>
+</body>
+
+</html>

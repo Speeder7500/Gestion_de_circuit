@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentification</title>
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/styleAuthentification.css">
+    
+</head>
+
+<body>
+    <!-- Bandeau De Navigation -->
+    <nav>
+        <img id="bandeau" src="../img/Bandeaux.png" alt="Bandeaux">
+        <h1 id="titre">SpeedCircuit</h1>
+        <div id="accueil">
+            <a href="../../index.html">
+                <p>Accueil</p>
+            </a>
+        </div>
+        <div id="information">
+            <a href="informationsCircuit.html">
+                <p>Informations</p>
+            </a>
+        </div>
+        <div id="reserver">
+            <a href="reservation.html">
+                <p>Reserver</p>
+            </a>
+        </div>
+        <div id="evenement">
+            <a href="evenement.html">
+                <p>Evenements</p>
+            </a>
+        </div>
+
+        <div id="compte" class="active_rouge">
+            <a href="#">
+                <img src="../img/logo_compte.png" alt="Compte">
+            </a>
+        </div>
+    </nav>
+
+
+    <div class="Authentification">
+        <h1>Page d'Authentification</h1>
+
+        <form action="../php/authentification.php" method="post">
+            <label for="identifiant">Nom d'utilisateur :</label>
+            <input type="text" id="identifiant" name="identifiant" required><br><br>
+            
+            <label for="password">Mot de passe :</label>
+            <input type="password" id="password" name="password" required><br><br>
+            
+            <input type="submit" value="Se connecter">
+
+            Vous n'avez pas de compte, <a id="redirect_inscription" href="inscription.html">inscrivez-vous</a>.
+        </form>
+    </div>
+    
+    <script src="../js/redirectionInfoUser.js"></script>
+
+</body>
+</html>

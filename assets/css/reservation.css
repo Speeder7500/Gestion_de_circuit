@@ -1,0 +1,246 @@
+/* --- MAIN LAYOUT --- */
+.mainContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    gap: 40px;
+    padding: 20px;
+    height: calc(100vh - 70px);
+}
+
+/* --- PANNEAU GAUCHE (LISTE VOITURES) --- */
+.carDisplayPanel {
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    width: 650px;
+    height: 550px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.panelHeader {
+    margin-bottom: 10px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+    color: #0d007a;
+    font-size: 1.1rem;
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.carListScrollContainer {
+    overflow-y: auto;
+    flex-grow: 1;
+    padding-right: 5px;
+}
+
+.carListScrollContainer::-webkit-scrollbar {
+    width: 6px;
+}
+
+.carListScrollContainer::-webkit-scrollbar-thumb {
+    background: #0d007a;
+    border-radius: 4px;
+}
+
+/* Grille 3 colonnes */
+.carGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.carCard {
+    background: white;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+
+.carCard:hover {
+    transform: translateY(-3px);
+    border-color: #ee3b3b;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.carImageWrapper {
+    height: 90px;
+    width: 100%;
+    background-color: #f0f0f0;
+}
+
+.carImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.carDetails {
+    padding: 8px;
+}
+
+.carName {
+    font-weight: 700;
+    color: #333;
+    font-size: 0.8rem;
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.carSpecs {
+    font-size: 0.7rem;
+    color: #666;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.availabilityTag {
+    font-size: 0.65rem;
+    padding: 1px 6px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.disponible {
+    background-color: #e6fffa;
+    color: #007a5e;
+}
+
+.en.réparation {
+    background-color: #fff5f5;
+    color: #ff8800;
+}
+
+.accidentée{
+    background-color: #fff5f5;
+    color: red;
+}
+
+.indisponible{
+    background-color: #fff5f5;
+    color: grey;
+}
+
+/* --- PANNEAU DROITE (FORMULAIRE) --- */
+.reservationPanel {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(5px);
+    border-radius: 5px;
+    width: 320px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.formTitle {
+    color: #2a0a5e;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.inputGroup {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.inputField {
+    background-color: #7b1e1e;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 15px;
+    color: white;
+    font-size: 0.9rem;
+    outline: none;
+    width: 100%;
+}
+
+.inputField::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.radioGroup {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 5px 0;
+    color: #0d007a;
+    font-weight: 600;
+    gap: 8px;
+    font-size: 0.9rem;
+}
+
+.radioOption {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.radioOption input {
+    margin-right: 10px;
+    accent-color: #0d007a;
+}
+
+/* Container pour les boutons de filtrage */
+.filter-buttons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+/* Style des boutons Moto et Voiture */
+.filter-buttons-container button {
+    padding: 12px 30px;
+    background: linear-gradient(135deg, #5a2d82 0%, #7b3f9e 100%);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(90, 45, 130, 0.3);
+    min-width: 120px;
+}
+
+.filter-buttons-container button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(90, 45, 130, 0.5);
+}
+
+.filter-buttons-container button:active {
+    transform: translateY(0);
+}
+
+.submitButton {
+    background: linear-gradient(135deg, #1e1e6e, #a31e1e);
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 25px;
+    cursor: pointer;
+    margin-top: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
+}
+
+.submitButton:hover {
+    transform: scale(1.05);
+}

@@ -1,0 +1,152 @@
+/* Style pour la division contenu */
+#contenu {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+#contenu > h1 {
+    color: #0055A4;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.container {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+#user {
+    flex: 0 0 35%;
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    border-top: 5px solid #0055A4;
+}
+
+.right-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#reservation {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    border-top: 5px solid #0055A4;
+}
+
+#reservationPast {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    border-top: 5px solid #EF4135;
+}
+
+h2 {
+    color: #0055A4;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    border-bottom: 3px solid #0055A4;
+    padding-bottom: 10px;
+}
+
+#reservationPast h2 {
+    color: #EF4135;
+    border-bottom: 3px solid #EF4135;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+thead {
+    background: linear-gradient(135deg, #0055A4 0%, #003d7a 100%);
+}
+
+#reservationPast thead {
+    background: linear-gradient(135deg, #EF4135 0%, #c9342b 100%);
+}
+
+thead td {
+    color: white;
+    font-weight: bold;
+    padding: 15px;
+    text-align: left;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    letter-spacing: 0.5px;
+}
+
+tbody tr {
+    border-bottom: 1px solid #e0e0e0;
+    transition: background-color 0.3s ease;
+}
+
+tbody tr:hover {
+    background-color: #f0f4ff;
+}
+
+tbody tr:last-child {
+    border-bottom: none;
+}
+
+tbody td {
+    padding: 15px;
+    color: #333;
+}
+
+/* Style pour le bouton de déconnexion */
+#contenu form {
+    text-align: center;
+    margin-top: 30px;
+}
+
+#contenu button[type="submit"] {
+    background: linear-gradient(135deg, #EF4135 0%, #c9342b 100%);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1.1em;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(239, 65, 53, 0.3);
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+#contenu button[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(239, 65, 53, 0.4);
+}
+
+#contenu button[type="submit"]:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 968px) {
+    .container {
+        flex-direction: column;
+    }
+
+    #user {
+        flex: 1;
+        width: 100%;
+    }
+
+    #contenu > h1 {
+        font-size: 2em;
+    }
+}

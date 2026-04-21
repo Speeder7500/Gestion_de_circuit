@@ -1,0 +1,109 @@
+/**
+    Fichier css qui permets d'avoir la base de la page c'est à dire le fond d'écran ainsi que le bandeaux de navigation
+*/
+#bandeau {
+    border-radius: 30px;
+    width: 100%;
+}
+
+body {
+    background-image: url(../img/image.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+a {
+    text-decoration: none;
+}
+
+p {
+    color: white;
+    font-family: sans-serif;
+    font-size: 20px;
+}
+
+#titre {
+    font-family: cursive;
+    color: white;
+    margin-top: -55px;
+    margin-left: 21px;
+    font-size: 20px;
+}
+
+#accueil {
+    position: relative;
+    margin-right: 73%;
+    margin-left: 17%;
+    padding-bottom: 1em;
+    margin-top: -5%;
+}
+
+#accueil p {
+    margin-left: 70px;
+    margin-top: 30px;
+    padding-top: 22px;
+}
+
+#information {
+    position: relative;
+    margin-left: 55%;
+    margin-top: -5%;
+    padding-bottom: 0.5em;
+    width: 8%;
+}
+
+#information p {
+    padding-top: 39px;
+    margin-top: 8%;
+    margin-left: 26px;
+}
+
+#reserver {
+    position: relative;
+    margin-left: 64%;
+    margin-top: -5%;
+    width: 7%;
+}
+
+#reserver p {
+    margin-left: 26px;
+    padding-top: 34px;
+    padding-bottom: 33px;
+    margin-top: 4%;
+}
+
+#evenement {
+    position: relative;
+    margin-left: 73%;
+    margin-top: -6%;
+    width: 8%;
+}
+
+#evenement p {
+    margin-left: 18px;
+    padding-bottom: 33px;
+    margin-top: 16%;
+    padding-top: 22%;
+}
+
+#compte {
+    position: relative;
+    margin-left: 85%;
+    margin-top: -6%;
+    width: 5%;
+}
+
+
+#compte img {
+    padding-left: 18px;
+    padding-top: 22px;
+    padding-bottom: 16px;
+}
+
+.active_bleu {
+    background-color: #1f03cf;
+}
+
+.active_rouge {
+    background-color: #ab2b2b;
+}
