@@ -1,4 +1,4 @@
-fetch('http://172.16.195.254:5000/reservation', {
+fetch('http://172.16.195.254:5000/reservation/comming', {
     credentials: 'include'
 })
     .then(
@@ -7,16 +7,17 @@ fetch('http://172.16.195.254:5000/reservation', {
                 reponse.json()
                     .then(
                         function (datas) {
-                            let informationReservation = document.getElementById('informationReservation');
-                            console.log(informationReservation);
+                            console.log(datas);
+                            let informationReservationComming = document.getElementById('informationReservationComming');
+                            console.log(informationReservationComming);
                             if (datas.length === 0) {
                                 let ligne = document.createElement('tr');
                                 ligne.textContent = "Vous n'avez aucune reservations a venir pour ce moment.";
-                                informationReservation.appendChild(ligne);
+                                informationReservationComming.appendChild(ligne);
                             }
                             datas.forEach(
                                 function (data) {
-                                    informationReservation.appendChild(reservation(data));
+                                    informationReservationComming.appendChild(reservationComming(data));
                                 }
                             )
                         }
@@ -25,7 +26,7 @@ fetch('http://172.16.195.254:5000/reservation', {
         }
     );
 
-function reservation(dataUser) {
+function reservationComming(dataUser) {
     let date = dataUser.DateReservation;
     let heure = dataUser.HeureReservation;
     let marque = dataUser.Marque;

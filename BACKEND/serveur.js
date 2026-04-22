@@ -88,7 +88,11 @@ app.get('/reservation/past', (req, res) => {
         return res.status(401).json({ message: 'Non authentifié - cookie user_name manquant' });
     }
 
-    let query = `SELECT CURRENT_DATE() AS DATE;`;
+    let query = `SELECT R.DateReservation, R.HeureReservation, V.Marque, V.Modele 
+FROM Client C 
+INNER JOIN Reservation R ON C.IdClient = R.IdClient 
+INNER JOIN Vehicule V ON R.IdVehicule = V.IdVehicule 
+WHERE C.IdEntite = ? AND R.DateReservation < CURDATE()`;
 
     connection.query(query, [idEntite], (err, results) => {
         if (err) {
@@ -96,23 +100,35 @@ app.get('/reservation/past', (req, res) => {
             return res.status(500).json({ message: 'Erreur interne au serveur' });
         }
 
-        console.log(JSON.stringify(results));
+        console.log(results);
+        res.json(results);
+    });
+});
 
-        let dateJSON = JSON.parse(JSON.stringify(results));
+app.get('/reservation/comming', (req, res) => {
+    console.log('Route /reservation/comming appelée');
+    const cookie = parseCookies(req.headers.cookie);
 
-        let datef = new Date(dateJSON[0].DATE);
+    let idEntite = cookie.user_name;
+    console.log(`idEntite : ${idEntite}`);
 
-        const [datePart, timePart] = datef.split(' ');
-        const [year, month, day] = datePart.split('-');
-        const [hours, minutes, seconds] = timePart.split(':');
-        // Treat as UTC
-        const date = new Date(Date.UTC(year, month - 1, day, hours, minutes, seconds));
+    if (!idEntite) {
+        return res.status(401).json({ message: 'Non authentifié - cookie user_name manquant' });
+    }
 
+    let query = `SELECT R.DateReservation, R.HeureReservation, V.Marque, V.Modele 
+FROM Client C 
+INNER JOIN Reservation R ON C.IdClient = R.IdClient 
+INNER JOIN Vehicule V ON R.IdVehicule = V.IdVehicule 
+WHERE C.IdEntite = ? AND R.DateReservation > CURDATE()`;
 
+    connection.query(query, [idEntite], (err, results) => {
+        if (err) {
+            console.error('Erreur SQL : ', err);
+            return res.status(500).json({ message: 'Erreur interne au serveur' });
+        }
 
-        console.log(date.toISOString());
-
-
+        console.log(results);
         res.json(results);
     });
 });
