@@ -183,7 +183,7 @@ app.get('/vehicule', (req, res) => {
 
 app.get('/evenement', (req, res) => {
     const query =
-        'SELECT LibelleEvenement, DateEvenement, Prix FROM Evenement;'
+        'SELECT LibelleEvenement, DateEvenement, HeureEvenement, Prix FROM Evenement;'
         ;
     connection.query(query, (err, results) => {
         if (err) {

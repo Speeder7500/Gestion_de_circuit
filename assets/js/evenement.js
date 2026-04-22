@@ -5,6 +5,7 @@ fetch('http://172.16.195.254:5000/evenement')
                 response.json()
                     .then(
                         function (datas) {
+                            console.log(datas);
                             let listeEvenement = document.getElementById('listeEvenement');
                             datas.forEach(
                                 function (data) {
@@ -18,27 +19,38 @@ fetch('http://172.16.195.254:5000/evenement')
             }
         }
     );
-    
+
 function evenement(data) {
     let LibelleEvenement = data.LibelleEvenement;
     let DateEvenement = data.DateEvenement;
+    let HeureEvenement = data.HeureEvenement;
     let Prix = `${data.Prix} €`;
+    let Button = document.createElement('button');
+
+    Button.textContent = 'Réserver';
 
     let ligne = document.createElement('tr');
 
     let colLibelleEvenement = document.createElement('td');
     let colDateEvenement = document.createElement('td');
+    let colHeureEvenement = document.createElement('td');
     let colPrix = document.createElement('td');
+    let colButton = document.createElement('td');
 
     colLibelleEvenement.textContent = LibelleEvenement;
-    colDateEvenement.textContent = DateEvenement;
+    colDateEvenement.textContent = new Date(DateEvenement).toLocaleDateString('fr-FR');
+    colHeureEvenement.textContent = HeureEvenement.substring(0, 5);
     colPrix.textContent = Prix;
+    colButton.appendChild(Button)
 
     ligne.appendChild(colLibelleEvenement);
     ligne.appendChild(colDateEvenement);
+    ligne.appendChild(colHeureEvenement);
     ligne.appendChild(colPrix);
+    ligne.appendChild(colButton);
 
-    
+
+
 
     return ligne;
 }
