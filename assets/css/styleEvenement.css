@@ -1,0 +1,86 @@
+/* ===========================
+   Page Événements - SpeedCircuit
+   =========================== */
+
+.ev-container {
+    max-width: 900px;
+    margin: 2.5rem auto;
+    padding: 0 1.5rem;
+}
+
+.ev-page-title {
+    text-align: center;
+    color: #1a237e;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    letter-spacing: 0.02em;
+}
+
+/* --- Carte principale --- */
+.ev-card {
+    background: #ffffff;
+    border-radius: 12px;
+    border: 0.5px solid rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.ev-card-title {
+    color: #c8960c;
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin: 0 0 1.2rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 2px solid #c8960c;
+}
+
+/* --- Tableau --- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+thead tr {
+    background: #1a237e;
+    color: #ffffff;
+}
+
+thead td {
+    padding: 11px 16px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+}
+
+thead td:first-child {
+    border-radius: 6px 0 0 6px;
+}
+
+thead td:last-child {
+    border-radius: 0 6px 6px 0;
+}
+
+tbody tr {
+    transition: background 0.15s ease;
+}
+
+tbody tr:nth-child(even) {
+    background: #f5f6fa;
+}
+
+tbody tr:hover {
+    background: #e8eaf6;
+}
+
+tbody td {
+    padding: 11px 16px;
+    color: #2c2c2c;
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.07);
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}

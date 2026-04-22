@@ -6,6 +6,10 @@
 const API_URL = 'http://172.16.195.254:5000/vehicule/'; // API Node backend
 const FALLBACK_API_URL = '../php/reservation.php'; // API PHP fallback
 
+const selectedCar = document.getElementById('selectedCar');
+let selectedCarMarque = null;
+let selectedModele = null;
+let selectedPriceCar = null;
 let selectedCarId = null;
 let selectedCarName = null;
 let selectedCarModel = null;
@@ -17,12 +21,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const radios = document.querySelectorAll('input[name="locationOption"]');
     const carPanel = document.querySelector('.carDisplayPanel');
-    const selectedCar = document.getElementById('selectedCar');
+    selectedPriceCar = document.getElementById('priceCar');
+    selectedCarMarque = document.getElementById('marque');
+    selectedModele = document.getElementById('modele');
+
 
     function updateCarPanelVisibility() {
         const selected = document.querySelector('input[name="locationOption"]:checked');
         carPanel.style.display = selected?.value === 'avec' ? 'flex' : 'none';
         selectedCar.style.display = selected?.value === 'avec' ? '' : 'none';
+        selectedPriceCar.value = selected?.value === 'avec' ? '' : '120 €';
+        selectedCarMarque.value = selected?.value === 'avec' ? '' : '';
+        selectedModele.value = selected?.value === 'avec' ? '' : '';
     }
 
     updateCarPanelVisibility();
@@ -35,12 +45,12 @@ document.addEventListener('DOMContentLoaded', () => {
 async function loadVehicles() {
     const grilleVehicules = document.getElementById('grilleVehicules');
     const compteur = document.getElementById('compteurVehicules');
-    
+
     try {
         // Essayer d'abord l'API Node
         let response = await fetch(API_URL);
         let data = response.json();
-        
+
         // Si l'API Node échoue, utiliser le fallback PHP
         if (!response.ok) {
             response = await fetch(FALLBACK_API_URL);
@@ -48,16 +58,16 @@ async function loadVehicles() {
         } else {
             data = await data;
         }
-        
+
         // Vérifier si les données sont valides
         if (!Array.isArray(data)) {
             throw new Error('Format de données invalide');
         }
-        
+
         // Afficher les véhicules
         displayVehicles(data);
         compteur.textContent = `${data.length} voiture${data.length > 1 ? 's' : ''}`;
-        
+
     } catch (error) {
         console.error('Erreur lors du chargement des véhicules:', error);
         grilleVehicules.innerHTML = `<p style="color: red; grid-column: 1/-1;">Erreur de chargement. Veuillez rafraîchir la page.</p>`;
@@ -71,12 +81,12 @@ async function loadVehicles() {
 function displayVehicles(vehicles) {
     const grilleVehicules = document.getElementById('grilleVehicules');
     grilleVehicules.innerHTML = ''; // Effacer le contenu précédent
-    
+
     if (vehicles.length === 0) {
         grilleVehicules.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #999;">Aucune voiture disponible</p>';
         return;
     }
-    
+
     // Générer les cartes de véhicules
     vehicles.forEach((vehicle, index) => {
         const card = createCarCard(vehicle, index);
@@ -118,13 +128,13 @@ function selectVehicle(id, marque, modele, prix) {
     selectedCarName = `${marque}`;
     selectedCarModel = `${modele}`;
     carPrice = `${prix} €`;
-    
+
+    selectedCarMarque = document.getElementById('marque');
+    selectedModele = document.getElementById('modele');
     // Mettre à jour le champ du formulaire
-    const selectedCar = document.getElementById('marque');
-    const selectedPriceCar = document.getElementById('priceCar');
-    const selectedModele = document.getElementById('modele');
+
     if (selectedCar && selectedPriceCar) {
-        selectedCar.value = selectedCarName;
+        selectedCarMarque.value = selectedCarName;
         selectedPriceCar.value = carPrice;
         selectedModele.value = selectedCarModel;
     }

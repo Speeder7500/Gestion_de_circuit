@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../css/base.css">
-        <title>Document</title>
+        <link rel="stylesheet" href="../css/styleEvenement.css">
+        <title>Événements - SpeedCircuit</title>
     </head>
 
     <body>
@@ -32,7 +33,6 @@
                     <p>Evenements</p>
                 </a>
             </div>
-
             <div id="compte">
                 <a href="authentification.html">
                     <img src="../img/logo_compte.png" alt="Compte">
@@ -40,16 +40,25 @@
             </div>
         </nav>
 
-        <table>
-            <thead>
-                <td>Evenement</td> 
-                <td>Date</td>
-                <td>Prix</td>
-            </thead>
-            <tbody id="listeEvenement"></tbody>
-        </table>
-        
-        <script src="../js/evenement.js"></script>
+        <!-- Contenu principal -->
+        <div class="ev-container">
+            <h2 class="ev-page-title">Événements à venir</h2>
 
+            <div class="ev-card">
+                <p class="ev-card-title">Calendrier des événements</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Événement</td>
+                            <td>Date</td>
+                            <td>Prix</td>
+                        </tr>
+                    </thead>
+                    <tbody id="listeEvenement"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <script src="../js/evenement.js"></script>
     </body>
 </html>

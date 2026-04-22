@@ -22,7 +22,7 @@ fetch('http://172.16.195.254:5000/evenement')
 function evenement(data) {
     let LibelleEvenement = data.LibelleEvenement;
     let DateEvenement = data.DateEvenement;
-    let Prix = data.Prix;
+    let Prix = `${data.Prix} €`;
 
     let ligne = document.createElement('tr');
 
