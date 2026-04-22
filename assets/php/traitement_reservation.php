@@ -21,11 +21,10 @@ if (!isset($_COOKIE['user_name'])) {
         $arrAll = $stmt->fetchAll();
 
         if (empty($arrAll)) {
-            die('Véhicule introuvable');
+            $IdVehicule = 100;
+        } else {
+            $IdVehicule = $arrAll[0]["IdVehicule"];
         }
-
-
-        $IdVehicule = $arrAll[0]["IdVehicule"];
     } catch (PDOException $e) {
         die('Erreur lors de la connexion à la BDD ' . $e->getMessage());
     }

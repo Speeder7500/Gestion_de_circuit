@@ -77,6 +77,45 @@ app.get('/compte', (req, res) => {
         res.json(results);
     });
 });
+app.get('/reservation/past', (req, res) => {
+    console.log('Route /reservation/past appelée');
+    const cookie = parseCookies(req.headers.cookie);
+
+    let idEntite = cookie.user_name;
+    console.log(`idEntite : ${idEntite}`);
+
+    if (!idEntite) {
+        return res.status(401).json({ message: 'Non authentifié - cookie user_name manquant' });
+    }
+
+    let query = `SELECT CURRENT_DATE() AS DATE;`;
+
+    connection.query(query, [idEntite], (err, results) => {
+        if (err) {
+            console.error('Erreur SQL : ', err);
+            return res.status(500).json({ message: 'Erreur interne au serveur' });
+        }
+
+        console.log(JSON.stringify(results));
+
+        let dateJSON = JSON.parse(JSON.stringify(results));
+
+        let datef = new Date(dateJSON[0].DATE);
+
+        const [datePart, timePart] = datef.split(' ');
+        const [year, month, day] = datePart.split('-');
+        const [hours, minutes, seconds] = timePart.split(':');
+        // Treat as UTC
+        const date = new Date(Date.UTC(year, month - 1, day, hours, minutes, seconds));
+
+
+
+        console.log(date.toISOString());
+
+
+        res.json(results);
+    });
+});
 
 app.get('/reservation', (req, res) => {
     console.log('Route /reservation appelée');
@@ -90,10 +129,10 @@ app.get('/reservation', (req, res) => {
     }
 
     let query = `SELECT R.DateReservation, R.HeureReservation, V.Marque, V.Modele 
-                FROM Client C 
-                INNER JOIN Reservation R ON C.IdClient = R.IdClient 
-                INNER JOIN Vehicule V ON R.IdVehicule = V.IdVehicule 
-                WHERE C.IdEntite = ? AND R.DateReservation > NOW();`;
+FROM Client C 
+INNER JOIN Reservation R ON C.IdClient = R.IdClient 
+INNER JOIN Vehicule V ON R.IdVehicule = V.IdVehicule 
+WHERE C.IdEntite = ? AND R.DateReservation = CURDATE();`;
 
     connection.query(query, [idEntite], (err, results) => {
         if (err) {
@@ -105,28 +144,7 @@ app.get('/reservation', (req, res) => {
     });
 });
 
-app.get('/reservation/past', (req, res) => {
-    console.log('Route /reservation/past appelée');
-    const cookie = parseCookies(req.headers.cookie);
 
-    let idEntite = cookie.user_name;
-    console.log(`idEntite : ${idEntite}`);
-
-    let query = `SELECT R.DateReservation, R.HeureReservation, V.Marque, V.Modele 
-                FROM Client C 
-                INNER JOIN Reservation R ON C.IdClient = R.IdClient 
-                INNER JOIN Vehicule V ON R.IdVehicule = V.IdVehicule 
-                WHERE C.IdEntite = ? AND R.DateReservation < NOW();`;
-
-    connection.query(query, [idEntite], (err, results) => {
-        if (err) {
-            console.error('Erreur SQL : ', err);
-            return res.status(500).json({ message: 'Erreur interne au serveur' });
-        }
-        console.log(results);
-        res.json(results);
-    });
-});
 
 app.get('/vehicule', (req, res) => {
     console.log('Route /vehicule appellée');
@@ -135,6 +153,7 @@ app.get('/vehicule', (req, res) => {
          e.IdEtat, e.libelleEtat
   FROM Vehicule v
   INNER JOIN Etat e ON v.IdEtat = e.IdEtat
+  WHERE v.IdVehicule < 100
     `;
     connection.query(query, (err, results) => {
         if (err) {

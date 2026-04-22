@@ -38,7 +38,7 @@ function historique(dataUser) {
     let colModele = document.createElement('td');
 
     colDate.textContent = new Date(date).toLocaleDateString('fr-FR');
-    colHeure.textContent = heure.substing(0, 5);
+    colHeure.textContent = heure.substring(0, 5);
     colMarque.textContent = marque;
     colModele.textContent = modele;
 
