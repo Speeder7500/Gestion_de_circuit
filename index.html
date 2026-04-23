@@ -9,39 +9,47 @@
 </head>
 
 <body>
-    <nav>
-        <img id="bandeau" src="assets/img/Bandeaux.png" alt="Bandeaux">
-        <h1 id="titre">SpeedCircuit</h1>
-        <div id="accueil" class="active_bleu">
-            <a href="#">
-                <p>Accueil</p>
-            </a>
-        </div>
-        <div id="information">
-            <a href="assets/html/informationsCircuit.html">
-                <p>Informations</p>
-            </a>
-        </div>
-        <div id="reserver">
-            <a href="assets/html/reservation.html">
-                <p>Reserver</p>
-            </a>
-        </div>
-        <div id="evenement">
-            <a href="assets/html/evenement.html">
-                <p>Evenements</p>
-            </a>
-        </div>
+    <!DOCTYPE html>
+    <html lang="fr">
 
-        <div id="compte">
-            <a href="assets/html/authentification.html">
-                <img src="assets/img/logo_compte.png" alt="Compte">
-            </a>
-        </div>
-    </nav>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SpeedCircuit</title>
+        <link rel="stylesheet" href="style_bandeau.css">
+    </head>
+
+    <body>
+
+        <!-- Bandeau De Navigation -->
+        <nav id="bandeau">
+            <div id="nav-logo">
+                <span id="titre">Speed<span class="accent">Circuit</span></span>
+            </div>
+
+            <div id="nav-links">
+                <a href="../../index.html" class="nav-link active">Accueil</a>
+                <a href="assets/html/informationsCircuit.html" class="nav-link">Informations</a>
+                <a href="assets/html/evenement.html" class="nav-link">Événements</a>
+            </div>
+
+            <div id="nav-right">
+                <a href="assets/html/reservation.html" id="btn-reserver">Réserver</a>
+                <a href="assets/html/authentification.html" id="compte">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z" />
+                    </svg>
+                </a>
+            </div>
+        </nav>
+
+    </body>
+
+    </html>
     <div class="contenu">
         <h1>Bienvenue sur le circuit</h1>
-        
+
         <p>Découvrez notre circuit de course automobile et réservez votre session dès aujourd'hui !</p>
     </div>
 </body>

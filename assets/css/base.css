@@ -1,109 +1,188 @@
-/**
-    Fichier css qui permets d'avoir la base de la page c'est à dire le fond d'écran ainsi que le bandeaux de navigation
-*/
-#bandeau {
-    border-radius: 30px;
-    width: 100%;
+/* ============================================
+   SpeedCircuit — Bandeau de Navigation
+   ============================================ */
+
+/* --- Reset de base --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+/* --- Variables de couleurs --- */
+:root {
+    --bleu-fonce:   #1203a8;
+    --bleu-vif:     #1f03cf;
+    --rouge:        #cc2222;
+    --rouge-fonce:  #a31b1b;
+    --blanc:        #ffffff;
+    --accent:       #ffcc44;
+    --texte-nav:    rgba(255, 255, 255, 0.88);
+    --hover-bg:     rgba(255, 255, 255, 0.15);
+    --active-bg:    rgba(255, 255, 255, 0.22);
+    --rayon:        14px;
+}
+
+/* --- Corps de page --- */
 body {
     background-image: url(../img/image.png);
     background-repeat: no-repeat;
     background-size: cover;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 20px;
 }
 
-a {
-    text-decoration: none;
+/* ============================================
+   BANDEAU DE NAVIGATION
+   ============================================ */
+
+#bandeau {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+
+    background: linear-gradient(135deg, var(--bleu-fonce) 0%, var(--bleu-vif) 45%, var(--rouge) 100%);
+    border-radius: var(--rayon);
+    padding: 0 28px;
+    height: 64px;
+
+    position: relative;
+    overflow: hidden;
+
+    /* Légère ombre pour détacher le bandeau du fond */
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
 }
 
-p {
-    color: white;
-    font-family: sans-serif;
-    font-size: 20px;
+/* Reflet décoratif central (effet tricolore) */
+#bandeau::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 42%;
+    width: 18%;
+    height: 100%;
+    background: white;
+    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
+    opacity: 0.10;
+    pointer-events: none;
+}
+
+/* ============================================
+   LOGO
+   ============================================ */
+
+#nav-logo {
+    flex-shrink: 0;
+    margin-right: 8px;
 }
 
 #titre {
     font-family: cursive;
-    color: white;
-    margin-top: -55px;
-    margin-left: 21px;
-    font-size: 20px;
+    font-size: 21px;
+    font-weight: bold;
+    color: var(--blanc);
+    letter-spacing: 0.5px;
+    white-space: nowrap;
 }
 
-#accueil {
-    position: relative;
-    margin-right: 73%;
-    margin-left: 17%;
-    padding-bottom: 1em;
-    margin-top: -5%;
+#titre .accent {
+    color: var(--accent);
 }
 
-#accueil p {
-    margin-left: 70px;
-    margin-top: 30px;
-    padding-top: 22px;
+/* ============================================
+   LIENS DE NAVIGATION (centre)
+   ============================================ */
+
+#nav-links {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex: 1;
+    justify-content: center;
 }
 
-#information {
-    position: relative;
-    margin-left: 55%;
-    margin-top: -5%;
-    padding-bottom: 0.5em;
-    width: 8%;
+.nav-link {
+    color: var(--texte-nav);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 18px;
+    border-radius: 8px;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+
+    /* Transition fluide au survol */
+    transition: background 0.2s ease, color 0.2s ease;
 }
 
-#information p {
-    padding-top: 39px;
-    margin-top: 8%;
-    margin-left: 26px;
+.nav-link:hover {
+    background: var(--hover-bg);
+    color: var(--blanc);
 }
 
-#reserver {
-    position: relative;
-    margin-left: 64%;
-    margin-top: -5%;
-    width: 7%;
+/* Lien de la page active */
+.nav-link.active {
+    background: var(--active-bg);
+    color: var(--blanc);
 }
 
-#reserver p {
-    margin-left: 26px;
-    padding-top: 34px;
-    padding-bottom: 33px;
-    margin-top: 4%;
+/* ============================================
+   BOUTONS À DROITE
+   ============================================ */
+
+#nav-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
 }
 
-#evenement {
-    position: relative;
-    margin-left: 73%;
-    margin-top: -6%;
-    width: 8%;
+/* Bouton "Réserver" — action principale */
+#btn-reserver {
+    background: var(--blanc);
+    color: var(--bleu-vif);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    padding: 8px 20px;
+    border-radius: 8px;
+    white-space: nowrap;
+
+    display: inline-flex;
+    align-items: center;
+
+    transition: opacity 0.2s ease, transform 0.15s ease;
 }
 
-#evenement p {
-    margin-left: 18px;
-    padding-bottom: 33px;
-    margin-top: 16%;
-    padding-top: 22%;
+#btn-reserver:hover {
+    opacity: 0.92;
+    transform: scale(0.98);
 }
 
+/* Icône compte utilisateur */
 #compte {
-    position: relative;
-    margin-left: 85%;
-    margin-top: -6%;
-    width: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.14);
+    border: 1.5px solid rgba(255, 255, 255, 0.38);
+
+    transition: background 0.2s ease;
+    flex-shrink: 0;
 }
 
-
-#compte img {
-    padding-left: 18px;
-    padding-top: 22px;
-    padding-bottom: 16px;
+#compte:hover {
+    background: rgba(255, 255, 255, 0.28);
 }
 
-.active_bleu {
-    background-color: #1f03cf;
-}
-
-.active_rouge {
-    background-color: #ab2b2b;
+#compte svg {
+    width: 18px;
+    height: 18px;
+    fill: var(--blanc);
 }

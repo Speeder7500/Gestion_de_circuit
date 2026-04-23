@@ -160,6 +160,9 @@ WHERE C.IdEntite = ? AND R.DateReservation = CURDATE();`;
     });
 });
 
+app.post('/reservation/update', (req, res) => {
+    console.log('route /reservation/update appelée');
+})
 
 
 app.get('/vehicule', (req, res) => {

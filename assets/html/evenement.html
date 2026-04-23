@@ -11,32 +11,24 @@
 
 <body>
     <!-- Bandeau De Navigation -->
-    <nav>
-        <img id="bandeau" src="../img/Bandeaux.png" alt="Bandeaux">
-        <h1 id="titre">SpeedCircuit</h1>
-        <div id="accueil">
-            <a href="../../index.html">
-                <p>Accueil</p>
-            </a>
+    <nav id="bandeau">
+        <div id="nav-logo">
+            <span id="titre">Speed<span class="accent">Circuit</span></span>
         </div>
-        <div id="information">
-            <a href="informationsCircuit.html">
-                <p>Informations</p>
-            </a>
+
+        <div id="nav-links">
+            <a href="../../index.html" class="nav-link">Accueil</a>
+            <a href="informationsCircuit.html" class="nav-link">Informations</a>
+            <a href="evenement.html" class="nav-link active">Événements</a>
         </div>
-        <div id="reserver">
-            <a href="reservation.html">
-                <p>Reserver</p>
-            </a>
-        </div>
-        <div id="evenement" class="active_rouge">
-            <a href="#">
-                <p>Evenements</p>
-            </a>
-        </div>
-        <div id="compte">
-            <a href="authentification.html">
-                <img src="../img/logo_compte.png" alt="Compte">
+
+        <div id="nav-right">
+            <a href="reservation.html" id="btn-reserver">Réserver</a>
+            <a href="authentification.html" id="compte">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z" />
+                </svg>
             </a>
         </div>
     </nav>
@@ -54,7 +46,6 @@
                         <td>Date</td>
                         <td>Heure</td>
                         <td>Prix</td>
-                        <td>Disponibilité</td>
                     </tr>
                 </thead>
                 <tbody id="listeEvenement"></tbody>
