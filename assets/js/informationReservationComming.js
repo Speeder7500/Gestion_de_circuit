@@ -1,4 +1,5 @@
-fetch('http://172.16.195.254:5000/reservation/comming', {
+const BASE_URL = 'http://172.16.195.254:5000';
+fetch(`${BASE_URL}/reservation/comming`, {
     credentials: 'include'
 })
     .then(
@@ -29,12 +30,35 @@ function reservationComming(dataUser) {
     let heure = dataUser.HeureReservation;
     let marque = dataUser.Marque;
     let modele = dataUser.Modele;
+    let idReservation = dataUser.IdReservation;
+    
     let supprimer = document.createElement('button');
     let modifier = document.createElement('button');
     let buttonGroup = document.createElement('div');
 
     supprimer.textContent = 'Supprimer';
     supprimer.id = 'btn-suprimer';
+    supprimer.dataset.id = idReservation;
+
+    supprimer.addEventListener('click', async() => {
+        const confirmation = confirm('Etes-vous sûr de vouloir supprimer cette réservation ?');
+
+        if (!confirmation) return;
+
+        console.log('URL appelée :', `/reservation/delete/${idReservation}`);
+        console.log('idReservation : ', idReservation);
+
+        const reponse = await fetch(`${BASE_URL}/reservation/delete/${idReservation}`, {
+            method: 'DELETE',
+            credentials: 'include'
+        });
+
+        if (reponse.ok) {
+            ligne.remove();
+        } else {
+            alert('Erreur lors de la suppression');
+        }
+    });
 
     modifier.textContent = 'Modifier';
     modifier.id = 'btn-modifier';

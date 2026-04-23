@@ -9,7 +9,7 @@ const cors = require('cors');
 
 app.use(cors({
     origin: true, // En production, spécifiez l'origine exacte
-    methods: ['GET', 'POST'],
+    methods: ['GET', 'POST', 'DELETE', 'PUT'],
     allowedHeaders: ['Content-Type', 'Authorization', 'x-user-id'],
     credentials: true
 }));
@@ -77,6 +77,36 @@ app.get('/compte', (req, res) => {
         res.json(results);
     });
 });
+
+app.delete('/reservation/delete/:id', (req, res) => {
+    console.log('route /reservation/delete appelée');
+    const cookie = parseCookies(req.headers.cookie);
+    const idEntite = cookie.user_name;
+
+    if (!idEntite) {
+        return res.status(401).json({ message: 'Erreur vous n\'êtes pas authentifie' });
+    }
+
+    const idReservation = req.params.id;
+
+    let query = `DELETE FROM Reservation 
+WHERE IdReservation = ? 
+AND IdClient = (SELECT IdClient FROM Client WHERE IdEntite = ?)`;
+
+    connection.query(query, [idReservation, idEntite], (err, result) => {
+        if (err) {
+            console.error('Erreur SQL  : ', err);
+            return res.status(500).json({ message: 'Erreur interne au serveur' });
+        }
+
+        if (result.affectedRows === 0) {
+            return res.status(403).json({ message: 'Réservation introuvable ou non authorisée' });
+        }
+
+        res.json({ sucess: true });
+    });
+});
+
 app.get('/reservation/past', (req, res) => {
     console.log('Route /reservation/past appelée');
     const cookie = parseCookies(req.headers.cookie);
@@ -116,7 +146,7 @@ app.get('/reservation/comming', (req, res) => {
         return res.status(401).json({ message: 'Non authentifié - cookie user_name manquant' });
     }
 
-    let query = `SELECT R.DateReservation, R.HeureReservation, V.Marque, V.Modele 
+    let query = `SELECT R.IdReservation, R.DateReservation, R.HeureReservation, V.Marque, V.Modele 
 FROM Client C 
 INNER JOIN Reservation R ON C.IdClient = R.IdClient 
 INNER JOIN Vehicule V ON R.IdVehicule = V.IdVehicule 
@@ -160,9 +190,7 @@ WHERE C.IdEntite = ? AND R.DateReservation = CURDATE();`;
     });
 });
 
-app.post('/reservation/update', (req, res) => {
-    console.log('route /reservation/update appelée');
-})
+
 
 
 app.get('/vehicule', (req, res) => {
@@ -489,6 +517,7 @@ app.put('/vehicule/:id/etat', (req, res) => {
     const { id } = req.params;
     const { IdEtat } = req.body;
 
+    console.log('Id Véhicule : ', id);
     if (!IdEtat) {
         return res.status(400).json({ message: 'IdEtat manquant' });
     }
@@ -496,7 +525,7 @@ app.put('/vehicule/:id/etat', (req, res) => {
     const query = `
     UPDATE Vehicule
     SET IdEtat = ?
-    WHERE IdVehicule = 2
+    WHERE IdVehicule = ?
     `;
     connection.query(query, [IdEtat, id], (err, results) => {
         if (err) {
