@@ -167,3 +167,48 @@ tbody td {
         font-size: 2em;
     }
 }
+
+#btn-modifier {
+    display: inline-block;
+    padding: 6px 14px;
+    background-color: #b8860b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    margin-bottom: 4px;
+}
+
+#btn-modifier:hover{
+    background-color: #9a7009;
+    transform: scale(1.03);
+}
+
+#btn-modifier:active{
+    transform: scale(0.97);
+}
+
+#btn-suprimer{
+    display: inline-block;
+    padding: 6px 14px;
+    background-color: #c0392b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, tranform 0.1s ease;
+}
+
+#btn-suprimer:hover{
+    background-color: #a93226;
+    transform: scale(1.03);
+}
+
+#btn-suprimer:active{
+    transform: scale(0.97);
+}

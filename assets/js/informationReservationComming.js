@@ -63,8 +63,8 @@ function reservationComming(dataUser) {
     modifier.textContent = 'Modifier';
     modifier.id = 'btn-modifier';
 
-    buttonGroup.appendChild(supprimer);
     buttonGroup.appendChild(modifier);
+    buttonGroup.appendChild(supprimer);
 
     buttonGroup.classList.add('btn-group');
 

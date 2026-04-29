@@ -5,12 +5,12 @@ if (!isset($_COOKIE['user_name'])) {
     header('Location: ../html/authentification.html');
     exit;
 } else {
-    $date = ($_POST['date']);
-    $heure = $_POST['heure'];
+    $date = (htmlspecialchars($_POST['date']));
+    $heure = htmlspecialchars($_POST['heure']);
     $prix = floatval(str_replace(['€', ' '], '', $_POST['prix']));
     $idEntite = ($_COOKIE['user_name']);
-    $marque = $_POST['marque'];
-    $modele = $_POST['modele'];
+    $marque = htmlspecialchars($_POST['marque']);
+    $modele = htmlspecialchars($_POST['modele']);
 
 
     try {
