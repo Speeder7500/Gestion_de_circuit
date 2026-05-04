@@ -1,0 +1,348 @@
+/* ============================================
+   reservation.css
+   SpeedCircuit — Page Réservation
+   DA cohérente avec base.css
+   ============================================ */
+
+/* ── Layout principal ───────────────────────── */
+.mainContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    gap: 40px;
+    padding: 2rem 1.5rem;
+    min-height: calc(100vh - 104px); /* hauteur bandeau + padding body */
+}
+
+/* ── Panneau gauche — liste des véhicules ────── */
+.carDisplayPanel {
+    position: relative;
+    background: rgba(5, 5, 20, 0.72);
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 32px rgba(0, 0, 0, 0.55);
+    width: 650px;
+    height: 550px;
+    padding: 1.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Liseré dégradé en haut */
+.carDisplayPanel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    border-radius: 14px 14px 0 0;
+    background: linear-gradient(135deg, var(--bleu-fonce) 0%, var(--bleu-vif) 45%, var(--rouge) 100%);
+}
+
+.panelHeader {
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--blanc);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.panelHeader span:first-child {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.panelHeader span:first-child::before {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--rouge);
+    flex-shrink: 0;
+}
+
+#compteurVehicules {
+    font-size: 0.78rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.50);
+}
+
+/* ── Scroll container ───────────────────────── */
+.carListScrollContainer {
+    overflow-y: auto;
+    flex-grow: 1;
+    padding-right: 4px;
+}
+
+.carListScrollContainer::-webkit-scrollbar {
+    width: 5px;
+}
+
+.carListScrollContainer::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+}
+
+.carListScrollContainer::-webkit-scrollbar-thumb {
+    background: var(--bleu-vif);
+    border-radius: 4px;
+}
+
+/* ── Grille véhicules ───────────────────────── */
+.carGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.carCard {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+
+.carCard:hover {
+    transform: translateY(-3px);
+    border-color: var(--rouge);
+    box-shadow: 0 4px 16px rgba(204, 34, 34, 0.25);
+}
+
+.carImageWrapper {
+    height: 90px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.30);
+}
+
+.carImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.carDetails {
+    padding: 8px;
+}
+
+.carName {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 700;
+    color: var(--blanc);
+    font-size: 0.8rem;
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.carSpecs {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.55);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ── Tags de disponibilité ──────────────────── */
+.availabilityTag {
+    font-size: 0.65rem;
+    padding: 2px 7px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.disponible {
+    background-color: rgba(0, 200, 140, 0.15);
+    color: #00c88c;
+}
+
+.en.réparation {
+    background-color: rgba(255, 136, 0, 0.15);
+    color: #ff8800;
+}
+
+.accidentée {
+    background-color: rgba(204, 34, 34, 0.15);
+    color: var(--rouge);
+}
+
+.indisponible {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.40);
+}
+
+/* ── Panneau droite — formulaire ─────────────── */
+.reservationPanel {
+    position: relative;
+    background: rgba(5, 5, 20, 0.72);
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 32px rgba(0, 0, 0, 0.55);
+    width: 320px;
+    padding: 2rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Liseré dégradé en haut */
+.reservationPanel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    border-radius: 14px 14px 0 0;
+    background: linear-gradient(135deg, var(--bleu-fonce) 0%, var(--bleu-vif) 45%, var(--rouge) 100%);
+}
+
+.formTitle {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--blanc);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.formTitle::before {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--rouge);
+    flex-shrink: 0;
+}
+
+/* ── Champs de formulaire ───────────────────── */
+.inputGroup {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.inputField {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    padding: 10px 14px;
+    color: var(--blanc);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 0.88rem;
+    outline: none;
+    width: 100%;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.inputField:focus {
+    border-color: var(--bleu-vif);
+    background: rgba(31, 3, 207, 0.15);
+}
+
+.inputField::placeholder {
+    color: rgba(255, 255, 255, 0.40);
+}
+
+/* Couleur du sélecteur de date/heure */
+.inputField[type="date"],
+.inputField[type="time"] {
+    color-scheme: dark;
+}
+
+/* ── Groupe radio ───────────────────────────── */
+.radioGroup {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 8px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.radioOption {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.radioOption input {
+    margin-right: 10px;
+    accent-color: var(--bleu-vif);
+}
+
+/* ── Boutons de filtrage ─────────────────────── */
+.filter-buttons-container {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 1.5rem;
+}
+
+.filter-buttons-container button {
+    padding: 10px 24px;
+    background: linear-gradient(135deg, var(--bleu-fonce) 0%, var(--bleu-vif) 100%);
+    color: var(--blanc);
+    border: none;
+    border-radius: 8px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.15s;
+    min-width: 110px;
+}
+
+.filter-buttons-container button:hover {
+    opacity: 0.88;
+    transform: translateY(-2px);
+}
+
+.filter-buttons-container button:active {
+    transform: translateY(0);
+}
+
+/* ── Bouton soumettre ───────────────────────── */
+.submitButton {
+    background: linear-gradient(135deg, var(--bleu-fonce) 0%, var(--bleu-vif) 45%, var(--rouge) 100%);
+    color: var(--blanc);
+    border: none;
+    padding: 11px 32px;
+    border-radius: 8px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 8px;
+    width: 100%;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.30);
+    transition: opacity 0.2s, transform 0.15s;
+}
+
+.submitButton:hover {
+    opacity: 0.90;
+    transform: scale(1.02);
+}
