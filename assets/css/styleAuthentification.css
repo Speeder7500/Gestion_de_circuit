@@ -1,163 +1,170 @@
-/**
-    Fichier uniquement pour la page d'authentification (connexion)
-*/
+/* ============================================
+   styleAuthentification.css
+   SpeedCircuit — Page Authentification
+   DA cohérente avec base.css
+   ============================================ */
 
-#titre {
-  color: white;
-  font-size: 26px;
-  font-weight: bold;
-  letter-spacing: 1.5px;
-  margin-right: 50px;
-}
-
-/* Conteneur d'authentification */
+/* ── Conteneur d'authentification ───────────── */
 .Authentification {
-  position: relative;
-  z-index: 1;
-  max-width: 480px;
-  margin: 140px auto 40px;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(15px);
-  border-radius: 24px;
-  padding: 50px 45px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-  animation: slideUp 0.6s ease;
+    position: relative;
+    max-width: 440px;
+    margin: 3rem auto;
+    padding: 2.5rem 2.5rem;
+
+    background: rgba(5, 5, 20, 0.72);
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 32px rgba(0, 0, 0, 0.55);
 }
 
+/* Liseré dégradé en haut */
+.Authentification::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    border-radius: 14px 14px 0 0;
+    background: linear-gradient(135deg, var(--bleu-fonce) 0%, var(--bleu-vif) 45%, var(--rouge) 100%);
+}
+
+/* ── Titre ──────────────────────────────────── */
 .Authentification h1 {
-  text-align: center;
-  color: #2a5298;
-  font-size: 30px;
-  margin-bottom: 40px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: clamp(1.4rem, 3vw, 1.8rem);
+    font-weight: 700;
+    color: var(--blanc);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
 }
 
-/* Formulaire */
-.Authentification form {
-  width: 100%;
+.Authentification h1::before {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--rouge);
+    flex-shrink: 0;
 }
 
+/* ── Labels ─────────────────────────────────── */
 .Authentification label {
-  display: block;
-  color: #333;
-  font-weight: 600;
-  margin-bottom: 10px;
-  font-size: 14px;
-  letter-spacing: 0.3px;
+    display: block;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.10em;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
 }
 
+/* ── Champs texte & mot de passe ────────────── */
 .Authentification input[type="text"],
 .Authentification input[type="password"] {
-  width: 100%;
-  padding: 16px 5px;
-  border: 2px solid #877d7d;
-  border-radius: 12px;
-  font-size: 15px;
-  transition: all 0.3s ease;
-  background: #f8f9fa;
-  margin-bottom: 25px;
-  font-family: inherit;
+    width: 100%;
+    padding: 11px 14px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 0.9rem;
+    color: var(--blanc);
+    outline: none;
+    margin-bottom: 1.25rem;
+    transition: border-color 0.2s, background 0.2s;
 }
 
 .Authentification input[type="text"]:focus,
 .Authentification input[type="password"]:focus {
-  outline: none;
-  border-color: #667eea;
-  background: white;
-  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
-  transform: translateY(-2px);
+    border-color: var(--bleu-vif);
+    background: rgba(31, 3, 207, 0.15);
 }
 
-/* Bouton de soumission */
+.Authentification input[type="text"]::placeholder,
+.Authentification input[type="password"]::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+}
+
+/* ── Bouton Se connecter ────────────────────── */
 .Authentification input[type="submit"] {
-  width: 100%;
-  padding: 16px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  border: none;
-  border-radius: 12px;
-  font-size: 17px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-top: 10px;
-  margin-bottom: 25px;
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
-  letter-spacing: 0.5px;
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, var(--bleu-fonce) 0%, var(--bleu-vif) 45%, var(--rouge) 100%);
+    color: var(--blanc);
+    border: none;
+    border-radius: 8px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.30);
+    transition: opacity 0.2s, transform 0.15s;
+    letter-spacing: 0.03em;
 }
 
 .Authentification input[type="submit"]:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+    opacity: 0.90;
+    transform: scale(1.02);
 }
 
 .Authentification input[type="submit"]:active {
-  transform: translateY(-1px);
+    transform: scale(0.99);
 }
 
-/* Lien d'inscription */
+/* ── Texte et lien d'inscription ────────────── */
 .Authentification form {
-  text-align: center;
-  color: #666;
-  font-size: 14px;
-  line-height: 1.8;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.55);
+    line-height: 1.8;
 }
 
 #redirect_inscription {
-  color: #667eea;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  position: relative;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+    transition: opacity 0.2s;
+    position: relative;
 }
 
 #redirect_inscription:hover {
-  color: #764ba2;
+    opacity: 0.80;
 }
 
 #redirect_inscription::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: -2px;
-  left: 0;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  transition: width 0.3s ease;
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background: var(--accent);
+    transition: width 0.3s ease;
 }
 
 #redirect_inscription:hover::after {
-  width: 100%;
+    width: 100%;
 }
 
-/* Responsive */
+/* ── Responsive ─────────────────────────────── */
 @media (max-width: 768px) {
-  
-  .Authentification {
-    margin: 100px 20px 30px;
-    padding: 40px 30px;
-  }
-  
-  .Authentification h1 {
-    font-size: 26px;
-    margin-bottom: 30px;
-  }
+    .Authentification {
+        margin: 2rem 1.25rem;
+        padding: 2rem 1.75rem;
+    }
 }
 
 @media (max-width: 480px) {
-  .Authentification {
-    padding: 35px 25px;
-  }
-  
-  .Authentification input[type="text"],
-  .Authentification input[type="password"] {
-    padding: 14px 16px;
-    font-size: 14px;
-  }
-  
-  .Authentification input[type="submit"] {
-    padding: 14px;
-    font-size: 16px;
-  }
+    .Authentification {
+        padding: 1.75rem 1.25rem;
+    }
 }

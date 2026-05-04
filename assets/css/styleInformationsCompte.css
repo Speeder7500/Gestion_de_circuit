@@ -1,32 +1,43 @@
-/* Style pour la division contenu */
+/* ============================================
+   styleInformationsCompte.css
+   SpeedCircuit — Page Compte
+   DA cohérente avec base.css
+   ============================================ */
+
+/* ── Conteneur principal ────────────────────── */
 #contenu {
     max-width: 1400px;
-    margin: 0 auto;
-    padding: 20px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
 }
 
-#contenu>h1 {
-    color: #0055A4;
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 2.5em;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+/* ── Titre de page ──────────────────────────── */
+#contenu > h1 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    color: var(--blanc);
+    letter-spacing: -0.01em;
+    margin-bottom: 1.75rem;
+    line-height: 1.1;
 }
 
+#contenu > h1::after {
+    content: '';
+    display: block;
+    margin-top: 0.4rem;
+    width: 56px;
+    height: 3px;
+    border-radius: 2px;
+    background: var(--accent);
+}
+
+/* ── Layout ─────────────────────────────────── */
 .container {
     display: flex;
     gap: 20px;
     align-items: flex-start;
-    margin-bottom: 20px;
-}
-
-#user {
-    flex: 0 0 35%;
-    background: white;
-    border-radius: 15px;
-    padding: 25px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    border-top: 5px solid #0055A4;
+    margin-bottom: 1.5rem;
 }
 
 .right-column {
@@ -36,123 +47,197 @@
     gap: 20px;
 }
 
-#reservation {
-    background: white;
-    border-radius: 15px;
-    padding: 25px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    border-top: 5px solid #0055A4;
-}
-
-#reservationPast {
-    background: white;
-    border-radius: 15px;
-    padding: 25px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    border-top: 5px solid #EF4135;
-}
-
+/* ── Mixin carte — base commune ─────────────── */
+#user,
+#reservation,
+#reservationPast,
 #reservationComming {
-    background: white;
-    border-radius: 15px;
-    padding: 25px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    border-top: 5px solid #c16d00;
+    position: relative;
+    background: rgba(5, 5, 20, 0.72);
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 32px rgba(0, 0, 0, 0.55);
+    padding: 1.75rem 2rem;
+    overflow: hidden;
 }
 
+/* Liseré en haut — couleur par section */
+#user::before,
+#reservation::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    border-radius: 14px 14px 0 0;
+    background: linear-gradient(135deg, var(--bleu-fonce) 0%, var(--bleu-vif) 45%, var(--rouge) 100%);
+}
+
+#reservationComming::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    border-radius: 14px 14px 0 0;
+    background: linear-gradient(135deg, #c16d00, #f0a030);
+}
+
+#reservationPast::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    border-radius: 14px 14px 0 0;
+    background: linear-gradient(135deg, var(--rouge-fonce), var(--rouge));
+}
+
+#user { flex: 0 0 35%; }
+
+/* ── H2 par section ─────────────────────────── */
 h2 {
-    color: #0055A4;
-    margin-bottom: 20px;
-    font-size: 1.5em;
-    border-bottom: 3px solid #0055A4;
-    padding-bottom: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--blanc);
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
 }
 
-#reservationPast h2 {
-    color: #EF4135;
-    border-bottom: 3px solid #EF4135;
+h2::before {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
 }
 
-#reservationComming h2 {
-    color: #c16d00;
-    border-bottom: 3px solid #c16d00;
-}
+#user h2::before,
+#reservation h2::before        { background: var(--bleu-vif); }
+#reservationComming h2::before { background: #f0a030; }
+#reservationPast h2::before    { background: var(--rouge); }
 
+/* ── Tableaux ────────────────────────────────── */
 table {
     width: 100%;
     border-collapse: collapse;
-    overflow: hidden;
-    border-radius: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 0.88rem;
 }
 
-thead {
-    background: linear-gradient(135deg, #0055A4 0%, #003d7a 100%);
-}
-
-#reservationPast thead {
-    background: linear-gradient(135deg, #EF4135 0%, #c9342b 100%);
+/* En-têtes */
+#user thead,
+#reservation thead {
+    background: linear-gradient(135deg, var(--bleu-fonce) 0%, var(--bleu-vif) 45%, var(--rouge) 100%);
 }
 
 #reservationComming thead {
-    background: linear-gradient(135deg, #c16d00 0%,  #a0600d 100%)
+    background: linear-gradient(135deg, #c16d00, #f0a030);
+}
+
+#reservationPast thead {
+    background: linear-gradient(135deg, var(--rouge-fonce), var(--rouge));
 }
 
 thead td {
-    color: white;
-    font-weight: bold;
-    padding: 15px;
-    text-align: left;
+    color: var(--blanc);
+    font-weight: 600;
+    padding: 10px 14px;
     text-transform: uppercase;
-    font-size: 0.9em;
-    letter-spacing: 0.5px;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
 }
 
+thead tr td:first-child { border-radius: 8px 0 0 8px; }
+thead tr td:last-child  { border-radius: 0 8px 8px 0; }
+
+/* Corps */
 tbody tr {
-    border-bottom: 1px solid #e0e0e0;
-    transition: background-color 0.3s ease;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    transition: background 0.2s;
+}
+
+tbody tr:last-child { border-bottom: none; }
+
+tbody tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.03);
 }
 
 tbody tr:hover {
-    background-color: #f0f4ff;
-}
-
-tbody tr:last-child {
-    border-bottom: none;
+    background: rgba(31, 3, 207, 0.15);
 }
 
 tbody td {
-    padding: 15px;
-    color: #333;
+    padding: 11px 14px;
+    color: rgba(255, 255, 255, 0.85);
 }
 
-/* Style pour le bouton de déconnexion */
+/* ── Boutons d'action ───────────────────────── */
+#btn-modifier {
+    display: inline-block;
+    padding: 5px 12px;
+    background: linear-gradient(135deg, #c16d00, #f0a030);
+    color: var(--blanc);
+    border: none;
+    border-radius: 6px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.15s;
+    margin-bottom: 4px;
+}
+
+#btn-modifier:hover  { opacity: 0.85; transform: scale(1.03); }
+#btn-modifier:active { transform: scale(0.97); }
+
+#btn-suprimer {
+    display: inline-block;
+    padding: 5px 12px;
+    background: linear-gradient(135deg, var(--rouge-fonce), var(--rouge));
+    color: var(--blanc);
+    border: none;
+    border-radius: 6px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.15s;
+}
+
+#btn-suprimer:hover  { opacity: 0.85; transform: scale(1.03); }
+#btn-suprimer:active { transform: scale(0.97); }
+
+/* ── Bouton déconnexion ─────────────────────── */
 #contenu form {
     text-align: center;
-    margin-top: 30px;
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
 }
 
 #contenu button[type="submit"] {
-    background: linear-gradient(135deg, #EF4135 0%, #c9342b 100%);
-    color: white;
+    background: linear-gradient(135deg, var(--rouge-fonce), var(--rouge));
+    color: var(--blanc);
     border: none;
-    padding: 12px 30px;
-    font-size: 1.1em;
-    border-radius: 25px;
+    padding: 11px 32px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    border-radius: 8px;
     cursor: pointer;
-    box-shadow: 0 5px 15px rgba(239, 65, 53, 0.3);
-    transition: all 0.3s ease;
-    font-weight: bold;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.30);
+    transition: opacity 0.2s, transform 0.15s;
+    letter-spacing: 0.03em;
 }
 
-#contenu button[type="submit"]:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(239, 65, 53, 0.4);
-}
+#contenu button[type="submit"]:hover  { opacity: 0.88; transform: translateY(-2px); }
+#contenu button[type="submit"]:active { transform: translateY(0); }
 
-#contenu button[type="submit"]:active {
-    transform: translateY(0);
-}
-
+/* ── Responsive ─────────────────────────────── */
 @media (max-width: 968px) {
     .container {
         flex-direction: column;
@@ -163,52 +248,7 @@ tbody td {
         width: 100%;
     }
 
-    #contenu>h1 {
-        font-size: 2em;
+    #contenu > h1 {
+        font-size: 1.8rem;
     }
-}
-
-#btn-modifier {
-    display: inline-block;
-    padding: 6px 14px;
-    background-color: #b8860b;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.1s ease;
-    margin-bottom: 4px;
-}
-
-#btn-modifier:hover{
-    background-color: #9a7009;
-    transform: scale(1.03);
-}
-
-#btn-modifier:active{
-    transform: scale(0.97);
-}
-
-#btn-suprimer{
-    display: inline-block;
-    padding: 6px 14px;
-    background-color: #c0392b;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.2s ease, tranform 0.1s ease;
-}
-
-#btn-suprimer:hover{
-    background-color: #a93226;
-    transform: scale(1.03);
-}
-
-#btn-suprimer:active{
-    transform: scale(0.97);
 }
