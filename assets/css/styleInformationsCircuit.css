@@ -3,11 +3,12 @@
     max-width: 900px;
     margin: 2rem auto 1rem;
     padding: 2rem 2.5rem;
-    background: rgba(255, 255, 255, 0.72);
+    background: rgba(5, 5, 20, 0.72);
     border-radius: 14px;
     border: 1px solid rgba(0, 0, 0, 0.14);
     backdrop-filter: blur(10px);
     box-shadow: 0 4px 32px rgba(0, 0, 0, 0.55);
+    overflow: hidden;
 }
 
 #contenu::before {
@@ -18,7 +19,7 @@
     right: 0;
     height: 3px;
     border-radius: 14px 14px 0 0;
-    background: linear-gradient(135deg, var(--bleu-fonce) 0%, var(--blue-vif) 45%, var (--rouge) 100%);
+    background: linear-gradient(135deg, var(--bleu-fonce) 0%, var(--bleu-vif) 45%, var(--rouge) 100%);
 }
 
 #contenu h1 {
