@@ -11,6 +11,7 @@ fetch('http://172.16.195.254:5000/reservation/past', {
                             if (datas.length === 0) {
                                 let ligne = document.createElement('tr');
                                 ligne.textContent = "Aucune reservation enregistrées dans l'historique";
+                                ligne.style.color = "white";
                                 informationReservationPast.appendChild(ligne);
                             }
                             datas.forEach(

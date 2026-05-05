@@ -12,6 +12,7 @@ fetch(`${BASE_URL}/reservation/comming`, {
                             if (datas.length === 0) {
                                 let ligne = document.createElement('tr');
                                 ligne.textContent = "Vous n'avez aucune reservations a venir pour ce moment.";
+                                ligne.style.color = "white";
                                 informationReservationComming.appendChild(ligne);
                             }
                             datas.forEach(
