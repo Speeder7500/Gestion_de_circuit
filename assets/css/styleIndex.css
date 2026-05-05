@@ -238,7 +238,7 @@
 }
 
 .btn-reserver-main {
-    background: var(--rouge);
+    background: var(--degrade);
     color: var(--blanc);
     text-decoration: none;
     border-radius: 8px;
