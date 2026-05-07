@@ -395,7 +395,7 @@ app.get('/compte/pro', (req, res) => {
         return res.status(401).json({ message: 'Non authentifié - cookie x-user-id manquant' });
     }
 
-    let query = 'SELECT E.Mail, E.Nom, P.Prenom, E.Identifiant FROM Personnel P, Entite E WHERE E.IdEntite = P.IdEntite AND E.IdEntite = ?';
+    let query = 'SELECT E.Mail, E.Nom, P.Prenom, E.Identifiant, P.IdPoste FROM Personnel P, Entite E WHERE E.IdEntite = P.IdEntite AND E.IdEntite = ?';
 
     connection.query(query, [idEntite], (err, results) => {
         if (err) {
