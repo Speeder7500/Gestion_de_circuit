@@ -32,6 +32,9 @@ function reservationComming(dataUser) {
     let marque = dataUser.Marque;
     let modele = dataUser.Modele;
     let idReservation = dataUser.IdReservation;
+
+    const dateFormatee = new Date(date).toLocaleDateString('fr-FR');
+    const heureFormatee = heure.substring(0, 5);
     
     let supprimer = document.createElement('button');
     let modifier = document.createElement('button');
@@ -41,25 +44,9 @@ function reservationComming(dataUser) {
     supprimer.id = 'btn-suprimer';
     supprimer.dataset.id = idReservation;
 
-    supprimer.addEventListener('click', async() => {
-        const confirmation = confirm('Etes-vous sûr de vouloir supprimer cette réservation ?');
-
-        if (!confirmation) return;
-
-        console.log('URL appelée :', `/reservation/delete/${idReservation}`);
-        console.log('idReservation : ', idReservation);
-
-        const reponse = await fetch(`${BASE_URL}/reservation/delete/${idReservation}`, {
-            method: 'DELETE',
-            credentials: 'include'
-        });
-
-        if (reponse.ok) {
-            ligne.remove();
-        } else {
-            alert('Erreur lors de la suppression');
-        }
-    });
+    supprimer.addEventListener('click', function() {
+        ouvrirModalSuppression(ligne, idReservation, dateFormatee, heureFormatee, marque, modele);
+    })
 
     modifier.textContent = 'Modifier';
     modifier.id = 'btn-modifier';
@@ -77,8 +64,8 @@ function reservationComming(dataUser) {
     let colModele = document.createElement('td');
     let colButtonGroup = document.createElement('td');
 
-    colDate.textContent = new Date(date).toLocaleDateString('fr-FR');
-    colHeure.textContent = heure.substring(0, 5);
+    colDate.textContent = dateFormatee;
+    colHeure.textContent = heureFormatee;
     colMarque.textContent = marque;
     colModele.textContent = modele;
     colButtonGroup.appendChild(buttonGroup);
