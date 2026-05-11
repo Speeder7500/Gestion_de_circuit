@@ -1,11 +1,6 @@
 /* ─────────────────────────────────────────
    CONTENU PRINCIPAL – SpeedCircuit
    ───────────────────────────────────────── */
-
-:root {
-    --degrade: linear-gradient(90deg, var(--bleu-fonce) 0%, var(--bleu-vif) 45%, var(--rouge) 100%);
-}
-
 .contenu {
     position: relative;
     max-width: 900px;
@@ -27,7 +22,7 @@
     left: 0;
     right: 0;
     height: 3px;
-    background: var(--degrade);
+    background: linear-gradient(90deg, var(--bleu-fonce) 0%, var(--bleu-vif) 45%, var(--rouge) 100%);
 }
 
 /* ─── Titres ─── */
@@ -48,7 +43,7 @@
     width: 48px;
     height: 3px;
     border-radius: 2px;
-    background: var(--degrade);
+    background: linear-gradient(90deg, var(--bleu-fonce) 0%, var(--bleu-vif) 45%, var(--rouge) 100%);
 }
 
 /* ─── Séparateurs de section ─── */
@@ -93,7 +88,7 @@
     width: 38px;
     height: 38px;
     border-radius: 8px;
-    background: var(--degrade);
+    background: linear-gradient(90deg, var(--bleu-fonce) 0%, var(--bleu-vif) 45%, var(--rouge) 100%);
     border: 1px solid rgba(232, 0, 26, 0.28);
     display: flex;
     align-items: center;
@@ -238,7 +233,7 @@
 }
 
 .btn-reserver-main {
-    background: var(--degrade);
+    background: linear-gradient(90deg, var(--bleu-fonce) 0%, var(--bleu-vif) 45%, var(--rouge) 100%);
     color: var(--blanc);
     text-decoration: none;
     border-radius: 8px;

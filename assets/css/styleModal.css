@@ -1,8 +1,12 @@
+/* ─────────────────────────────────────────
+   MODAL – SpeedCircuit (dark)
+   ───────────────────────────────────────── */
+
 .modal-overlay {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.55);
+    background: rgba(0, 0, 0, 0.72);
     z-index: 1000;
     align-items: center;
     justify-content: center;
@@ -14,24 +18,31 @@
 }
 
 .modal {
-    background: #ffffff;
-    border-radius: 12px;
-    border: 1px solid #e5e5e5;
+    background: rgba(5, 5, 20, 0.92);
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 1.75rem 2rem;
     max-width: 100%;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.14);
-    animation: modal-in 0.2 ease;
+    box-shadow: 0 8px 48px rgba(0, 0, 0, 0.7);
+    position: relative;
+    overflow: hidden;
+    animation: modal-in 0.2s ease;  /* ← correction du "0.2" manquant */
+}
+
+/* Barre dégradé – cohérente avec .contenu */
+.modal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--bleu-fonce) 0%, var(--bleu-vif) 45%, var(--rouge) 100%);
 }
 
 @keyframes modal-in {
-    from {
-        transform: scale(0.95);
-        opacity: 0;
-    }
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
+    from { transform: scale(0.95); opacity: 0; }
+    to   { transform: scale(1);    opacity: 1; }
 }
 
 .modal-header {
@@ -46,7 +57,8 @@
     width: 42px;
     height: 42px;
     border-radius: 8px;
-    background: #fef2f2;
+    background: rgba(232, 0, 26, 0.12);
+    border: 1px solid rgba(232, 0, 26, 0.28);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -55,7 +67,7 @@
 .modal-icon svg {
     width: 20px;
     height: 20px;
-    stroke: #dc2626;
+    stroke: var(--rouge);
     fill: none;
     stroke-width: 2;
     stroke-linecap: round;
@@ -65,21 +77,21 @@
 .modal-title {
     margin: 0 0 4px;
     font-size: 16px;
-    font-weight: 600;
-    color: #111;
+    font-weight: 700;
+    color: var(--blanc);
 }
 
 .modal-subtitle {
     margin: 0;
-    font-size: 14px;
-    color: #666;
-    line-height: 1.5;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.55);
+    line-height: 1.55;
 }
 
 .modal-recap {
-    background: #f9f9f9;
-    border-radius: 8px;
-    border: 1px solid #e5e5e5;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
     padding: 14px 16px;
     margin-bottom: 1.5rem;
     display: grid;
@@ -92,14 +104,14 @@
     font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 0.05rem;
-    color: #999;
+    color: rgba(255, 255, 255, 0.35);
     margin-bottom: 3px;
 }
 
 .recap-item span {
     font-size: 14px;
-    font-weight: 500;
-    color: #111;
+    font-weight: 600;
+    color: var(--blanc);
 }
 
 .modal-actions {
@@ -110,34 +122,35 @@
 
 .modal-btn {
     padding: 8px 18px;
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 13px;
+    font-weight: 600;
     border-radius: 8px;
     cursor: pointer;
-    border: 1px solid #e5e5e5;
-    background: #fff;
-    color: #333;
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     transition: background 0.15s, border-color 0.15s;
 }
 
 .modal-btn:hover {
-    background: #f5f5f5;
-    border-color: #ccc;
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.18);
+    color: var(--blanc);
 }
 
 .modal-btn-danger {
-    background: #fef2f2;
-    color: #dc2626;
-    border-color: #fca5a5;
+    background: rgba(232, 0, 26, 0.12);
+    color: var(--rouge);
+    border-color: rgba(232, 0, 26, 0.28);
 }
 
 .modal-btn-danger:hover {
-    background: #fee2e2;
-    border-color: #f87171;
+    background: rgba(232, 0, 26, 0.22);
+    border-color: rgba(232, 0, 26, 0.45);
 }
 
 .modal-btn-danger:disabled {
-    opacity: 0.6;
+    opacity: 0.5;
     cursor: not-allowed;
 }
 
@@ -151,13 +164,13 @@
 }
 
 .modal-feedback.success {
-    background: #f0fdf4;
-    color: #16a34a;
-    border: 1px solid #bbf7d0;
+    background: rgba(22, 163, 74, 0.1);
+    color: #4ade80;
+    border: 1px solid rgba(22, 163, 74, 0.25);
 }
 
 .modal-feedback.error {
-    background: #fef2f2;
-    color: #dc2626;
-    border: 1px solid #fca5a5;
+    background: rgba(232, 0, 26, 0.1);
+    color: var(--rouge);
+    border: 1px solid rgba(232, 0, 26, 0.25);
 }
