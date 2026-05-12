@@ -294,20 +294,21 @@ app.post('/login', (req, res) => {
 app.get('/toutes-reservations', (req, res) => {
     console.log('Route /toutes-reservations appelée');
     const query = `
-    SELECT 
-        S.IdSession, 
-        S.NbReservationMax, 
-        S.DateSession, 
-        V.Marque, 
-        V.Modele, 
-        C.Prenom, 
-        E.Nom
-    FROM Session S
-    INNER JOIN Reservation R ON S.IdSession = R.IdSession
-    INNER JOIN Vehicule V ON R.IdVehicule = V.IdVehicule
-    INNER JOIN Client C ON R.IdClient = C.IdClient
-    INNER JOIN Entite E ON C.IdEntite = E.IdEntite
-    ORDER BY S.DateSession DESC;
+   SELECT 
+    S.IdSession, 
+    S.NbReservationMax, 
+    R.DateReservation,
+    R.HeureReservation,
+    V.Marque, 
+    V.Modele, 
+    C.Prenom, 
+    E.Nom
+FROM Session S
+INNER JOIN Reservation R ON S.IdSession = R.IdSession
+INNER JOIN Vehicule V ON R.IdVehicule = V.IdVehicule
+INNER JOIN Client C ON R.IdClient = C.IdClient
+INNER JOIN Entite E ON C.IdEntite = E.IdEntite
+ORDER BY R.DateReservation DESC;
     `;
 
     connection.query(query, (err, results) => {
@@ -325,21 +326,22 @@ app.get('/toutes-reservations', (req, res) => {
 app.get('/toutes-reservations/today', (req, res) => {
     console.log('Route /toutes-reservations/upcoming appelée');
     const query = `
-    SELECT 
-        S.IdSession, 
-        S.NbReservationMax, 
-        S.DateSession, 
-        V.Marque, 
-        V.Modele, 
-        C.Prenom, 
-        E.Nom
-    FROM Session S
-    INNER JOIN Reservation R ON S.IdSession = R.IdSession
-    INNER JOIN Vehicule V ON R.IdVehicule = V.IdVehicule
-    INNER JOIN Client C ON R.IdClient = C.IdClient
-    INNER JOIN Entite E ON C.IdEntite = E.IdEntite
-    WHERE S.DateSession = NOW()
-    ORDER BY S.DateSession DESC;
+   SELECT 
+    S.IdSession, 
+    S.NbReservationMax, 
+    R.DateReservation,
+    R.HeureReservation,
+    V.Marque, 
+    V.Modele, 
+    C.Prenom, 
+    E.Nom
+FROM Session S
+INNER JOIN Reservation R ON S.IdSession = R.IdSession
+INNER JOIN Vehicule V ON R.IdVehicule = V.IdVehicule
+INNER JOIN Client C ON R.IdClient = C.IdClient
+INNER JOIN Entite E ON C.IdEntite = E.IdEntite
+WHERE R.DateReservation = NOW()
+ORDER BY R.DateReservation DESC;
     `;
     connection.query(query, (err, results) => {
         if (err) {
@@ -357,20 +359,21 @@ app.get('/toutes-reservations/past', (req, res) => {
     console.log('Route /toutes-reservations/past appelée');
     const query = `
     SELECT 
-        S.IdSession, 
-        S.NbReservationMax, 
-        S.DateSession, 
-        V.Marque, 
-        V.Modele, 
-        C.Prenom, 
-        E.Nom
-    FROM Session S
-    INNER JOIN Reservation R ON S.IdSession = R.IdSession
-    INNER JOIN Vehicule V ON R.IdVehicule = V.IdVehicule
-    INNER JOIN Client C ON R.IdClient = C.IdClient
-    INNER JOIN Entite E ON C.IdEntite = E.IdEntite
-    WHERE S.DateSession < NOW()
-    ORDER BY S.DateSession DESC;
+    S.IdSession, 
+    S.NbReservationMax, 
+    R.DateReservation,
+    R.HeureReservation,
+    V.Marque, 
+    V.Modele, 
+    C.Prenom, 
+    E.Nom
+FROM Session S
+INNER JOIN Reservation R ON S.IdSession = R.IdSession
+INNER JOIN Vehicule V ON R.IdVehicule = V.IdVehicule
+INNER JOIN Client C ON R.IdClient = C.IdClient
+INNER JOIN Entite E ON C.IdEntite = E.IdEntite
+WHERE R.DateReservation < NOW()
+ORDER BY R.DateReservation DESC;
     `;
 
     connection.query(query, (err, results) => {
