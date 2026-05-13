@@ -317,9 +317,14 @@ ORDER BY R.DateReservation DESC;
             return res.status(500).json({ message: 'Erreur interne au serveur' });
         }
 
-        console.log('Résultats de la requête :', results); // Debug important
+        const formatted = results.map((row => ({
+            ...row,
+            DateReservation: new Date(row.DateReservation).toLocaleDateString('fr-FR'),
+        })));
 
-        res.json(results);
+        console.log('Résultats de la requête :', formatted); // Debug important
+
+        res.json(formatted);
     });
 });
 
@@ -349,9 +354,14 @@ ORDER BY R.DateReservation DESC;
             return res.status(500).json({ message: 'Erreur interne au serveur' });
         }
 
-        console.log('Résultats de la requête :', results); // Debug important
+        const formatted = results.map((row => ({
+            ...row,
+            DateReservation: new Date(row.DateReservation).toLocaleDateString('fr-FR'),
+        })))
 
-        res.json(results);
+        console.log('Résultats de la requête :', formatted); // Debug important
+
+        res.json(formatted);
     });
 });
 
@@ -382,9 +392,14 @@ ORDER BY R.DateReservation DESC;
             return res.status(500).json({ message: 'Erreur interne au serveur' });
         }
 
-        console.log('Résultats de la requête :', results); // Debug important
+        const formatted = results.map((row => ({
+            ...row,
+            DateReservation: new Date(row.DateReservation).toLocaleDateString('fr-FR'),
+        })));
 
-        res.json(results);
+        console.log('Résultats de la requête :', formatted); // Debug important
+
+        res.json(formatted);
     });
 });
 
