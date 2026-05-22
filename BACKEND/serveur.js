@@ -200,7 +200,7 @@ app.get('/vehicule', (req, res) => {
          e.IdEtat, e.libelleEtat
   FROM Vehicule v
   INNER JOIN Etat e ON v.IdEtat = e.IdEtat
-  WHERE v.IdVehicule < 100
+  WHERE v.IdVehicule != 100
     `;
     connection.query(query, (err, results) => {
         if (err) {
@@ -537,7 +537,7 @@ app.put('/vehicule/:id/etat', (req, res) => {
 
     console.log('Id Véhicule : ', id);
     if (!IdEtat) {
-        return res.status(400).json({ message: 'IdEtat manquant' });
+        return res.status(401).json({ message: 'IdEtat manquant' });
     }
 
     const query = `
@@ -556,4 +556,26 @@ app.put('/vehicule/:id/etat', (req, res) => {
         console.log(results);
         res.json({ message: 'Etat mis à jour avec succès' });
     });
+});
+
+app.put('/vehicule/add', (req, res) => {
+    console.log('Route /vehicule/add appellée');
+    const {marque, modele, puissance, motricite, poid, prix, idEtat} = req.body;
+
+    if (!marque || !modele || !puissance || !poid || !prix || !idEtat) {
+        return res.status(401).json({ message: 'Tous les champs sont requis' });
+    }
+
+    const query = `
+    INSERT INTO Vehicule(Marque, Puissance, Poid, Motricite, Modele, Prix, IdEtat) 
+    VALUES (?, ?, ?, ?, ?, ?, ?)`;
+    connection.query(query, [marque, puissance, poid, motricite, modele, prix, idEtat], (err, results) => {
+        if (err) {
+            console.error('Erreur SQL : ', err);
+            return res.status(500).json({ message: 'Erreur interne au serveur' });
+        }
+
+        console.log('Véhicule ajouté avec succès');
+        res.json({ message : 'Véhicule ajouté avec succès' });
+    })
 });
