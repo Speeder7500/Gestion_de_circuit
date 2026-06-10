@@ -6,6 +6,8 @@ const app = express();
 const bcrypt = require('bcrypt');
 const crypto = require('crypto');
 const cors = require('cors');
+const { read } = require('fs');
+const { parse } = require('path');
 
 app.use(cors({
     origin: true, // En production, spécifiez l'origine exacte
@@ -75,6 +77,76 @@ app.get('/compte', (req, res) => {
         }
         console.log(results);
         res.json(results);
+    });
+});
+
+app.put('/reservation/:id', (req, res) => {
+    console.log('route /reservation/update appelée');
+    const cookie = parseCookies(req.headers.cookie);
+    const idEntite = cookie.user_name;
+
+    if (!idEntite) {
+        return res.status(401).json({ message: 'Erreur vous n\'êtes pas authentifié' });
+    }
+
+    const idReservation = req.params.id;
+    const { date, heure, marque, modele } = req.body;
+
+    // Si sans location → IdVehicule = 100, Prix = 120 directement
+    if (!marque || !modele) {
+        let queryUpdate = `UPDATE Reservation 
+SET DateReservation = ?, HeureReservation = ?, IdVehicule = 100, Prix = 120
+WHERE IdReservation = ? 
+AND IdClient = (SELECT IdClient FROM Client WHERE IdEntite = ?)`;
+
+        connection.query(queryUpdate, [date, heure, idReservation, idEntite], (err, result) => {
+            if (err) {
+                console.error('Erreur SQL : ', err);
+                return res.status(500).json({ message: 'Erreur interne au serveur' });
+            }
+
+            if (result.affectedRows === 0) {
+                return res.status(403).json({ message: 'Réservation introuvable ou non autorisée' });
+            }
+
+            res.json({ success: true });
+        });
+        return;
+    }
+
+    // Avec location → récupérer IdVehicule et Prix
+    let queryVehicule = `SELECT IdVehicule, Prix FROM Vehicule WHERE Marque = ? AND Modele = ?`;
+
+    connection.query(queryVehicule, [marque, modele], (err, vehicules) => {
+        if (err) {
+            console.error('Erreur SQL : ', err);
+            return res.status(500).json({ message: 'Erreur interne au serveur' });
+        }
+
+        if (vehicules.length === 0) {
+            return res.status(404).json({ message: 'Véhicule introuvable' });
+        }
+
+        const idVehicule = vehicules[0].IdVehicule;
+        const prix = vehicules[0].Prix;
+
+        let queryUpdate = `UPDATE Reservation 
+SET DateReservation = ?, HeureReservation = ?, IdVehicule = ?, Prix = ?
+WHERE IdReservation = ? 
+AND IdClient = (SELECT IdClient FROM Client WHERE IdEntite = ?)`;
+
+        connection.query(queryUpdate, [date, heure, idVehicule, prix, idReservation, idEntite], (err, result) => {
+            if (err) {
+                console.error('Erreur SQL : ', err);
+                return res.status(500).json({ message: 'Erreur interne au serveur' });
+            }
+
+            if (result.affectedRows === 0) {
+                return res.status(403).json({ message: 'Réservation introuvable ou non autorisée' });
+            }
+
+            res.json({ success: true });
+        });
     });
 });
 

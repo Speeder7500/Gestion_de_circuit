@@ -46,6 +46,17 @@ function reservationComming(dataUser) {
 
     supprimer.addEventListener('click', function() {
         ouvrirModalSuppression(ligne, idReservation, dateFormatee, heureFormatee, marque, modele);
+    });
+
+    modifier.addEventListener('click', function () {
+        const params = new URLSearchParams({
+            id: idReservation,
+            date: dataUser.DateReservation,
+            heure: heureFormatee,
+            marque: marque,
+            modele: modele
+        });
+        window.location.href = `../html/reservation.html?${params.toString()}`;
     })
 
     modifier.textContent = 'Modifier';
