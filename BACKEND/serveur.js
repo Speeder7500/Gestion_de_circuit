@@ -558,9 +558,9 @@ app.put('/vehicule/:id/etat', (req, res) => {
     });
 });
 
-app.put('/vehicule/add', (req, res) => {
+app.post('/vehicule/add', (req, res) => {
     console.log('Route /vehicule/add appellée');
-    const {marque, modele, puissance, motricite, poid, prix, idEtat} = req.body;
+    const { marque, modele, puissance, motricite, poid, prix, idEtat } = req.body;
 
     if (!marque || !modele || !puissance || !poid || !prix || !idEtat) {
         return res.status(401).json({ message: 'Tous les champs sont requis' });
@@ -575,7 +575,32 @@ app.put('/vehicule/add', (req, res) => {
             return res.status(500).json({ message: 'Erreur interne au serveur' });
         }
 
-        console.log('Véhicule ajouté avec succès');
-        res.json({ message : 'Véhicule ajouté avec succès' });
-    })
+        const newId = results.insertId;
+
+        const motrciteInt = parseInt(motricite);
+        const tableSecondaire = (motrciteInt === 2 || motrciteInt === 4) ? 'Voiture' : 'Moto';
+        const querySecondaire = `INSERT INTO ${tableSecondaire} (IdVehicule) VALUES (?)`;
+        connection.query(querySecondaire, [newId], (err2) => {
+            if (err2) {
+                console.error(`Erreur SQL ${tableSecondaire} : `, err2);
+                return res.status(500).json({ message: `Erreur insertion dans ${tableSecondaire}` });
+            }
+
+            connection.query(
+                `SELECT v.*, e.libelleEtat 
+         FROM Vehicule v 
+         JOIN Etat e ON v.IdEtat = e.IdEtat 
+         WHERE v.IdVehicule = ?`,
+                [newId],
+                (err3, rows) => {
+                    if (err3) {
+                        console.error('Erreur récupération : ', err3);
+                        return res.status(500).json({ message: 'Erreur récupération véhicule' });
+                    }
+                    console.log(`Véhicule ajouté dans Vehicule et ${tableSecondaire}`);
+                    return res.status(201).json(rows[0]);
+                }
+            );
+        });
+    });
 });
